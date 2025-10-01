@@ -613,12 +613,12 @@ const ArachneApp = () => {
                       {sentence}
                     </div>
                     {hovers[idx] && (
-                      <div className="absolute hidden group-hover:block bg-gradient-to-r from-yellow-400/90 to-orange-400/90 backdrop-blur-xl text-gray-900 p-5 rounded-2xl text-base font-bold -top-28 left-0 right-0 z-10 shadow-2xl border-4 border-yellow-500/60">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-2xl">💡</span>
-                          <span className="text-lg">HINT:</span>
+                      <div className="absolute hidden group-hover:block bg-yellow-100/95 backdrop-blur-sm text-gray-800 p-3 rounded-lg text-sm -top-16 left-0 right-0 z-10 shadow-lg border border-yellow-300">
+                        <div className="flex items-center gap-1 mb-1">
+                          <span className="text-base">💡</span>
+                          <span className="text-xs font-semibold uppercase tracking-wide">Hint:</span>
                         </div>
-                        <div className="leading-relaxed">{hovers[idx].text}</div>
+                        <div className="leading-snug text-xs">{hovers[idx].text}</div>
                       </div>
                     )}
                   </div>
@@ -796,12 +796,12 @@ const ArachneApp = () => {
                       </div>
                       <p className="text-base leading-relaxed">{chunk.text}</p>
                     </div>
-                    <div className="absolute hidden group-hover:block bg-gradient-to-r from-yellow-400/90 to-orange-400/90 backdrop-blur-xl text-gray-900 p-4 rounded-2xl text-base font-semibold top-full left-0 right-0 mt-2 z-50 shadow-2xl border-4 border-yellow-500/60 pointer-events-none">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-2xl">💡</span>
-                        <span className="font-bold">HINT:</span>
+                    <div className="absolute hidden group-hover:block bg-yellow-100/95 backdrop-blur-sm text-gray-800 p-3 rounded-lg text-sm top-full left-0 right-0 mt-2 z-50 shadow-lg border border-yellow-300 pointer-events-none">
+                      <div className="flex items-center gap-1 mb-1">
+                        <span className="text-base">💡</span>
+                        <span className="text-xs font-semibold uppercase tracking-wide">Hint:</span>
                       </div>
-                      <p className="leading-relaxed">{chunk.hint}</p>
+                      <p className="leading-snug text-xs">{chunk.hint}</p>
                     </div>
                   </div>
                 ))}
