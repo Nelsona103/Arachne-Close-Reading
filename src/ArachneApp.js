@@ -276,7 +276,7 @@ const ArachneApp = () => {
   };
 
   const ProgressBar = () => (
-    <div className="flex items-center justify-center gap-2 mb-8">
+    <div className="flex items-center justify-center gap-2 mb-3">
       {[
         { num: 1, label: 'Start', icon: Target },
         { num: 2, label: 'Read 1', icon: Brain },
@@ -318,29 +318,29 @@ const ArachneApp = () => {
     };
 
     return (
-      <div className="bg-white/20 backdrop-blur-xl rounded-2xl p-6 border border-white/60 shadow-lg">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white/20 backdrop-blur-xl rounded-xl p-3 border border-white/60 shadow-lg h-full overflow-auto">
+        <h3 className="text-sm font-bold text-gray-900 mb-2 flex items-center gap-1">
           🕸️ Evidence Tracker
-          <span className="text-sm font-normal text-gray-700">
+          <span className="text-xs font-normal text-gray-700">
             (Watch the connections grow!)
           </span>
         </h3>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-2 text-xs">
           <div>
-            <div className="flex items-center gap-2 mb-3 bg-purple-200/40 backdrop-blur-lg p-2 rounded-2xl border border-purple-300/60">
-              <div className="w-3 h-3 bg-purple-600 rounded-full"></div>
-              <span className="font-bold text-purple-900">Character Traits</span>
+            <div className="flex items-center gap-1 mb-1 bg-purple-200/40 backdrop-blur-lg p-1 rounded-lg border border-purple-300/60">
+              <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+              <span className="font-bold text-purple-900 text-xs">Traits</span>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1">
               {allHighlights.traits.map((t, i) => (
-                <div key={i} className="bg-white/60 backdrop-blur-lg p-3 rounded-2xl border-l-4 border-purple-600 shadow-lg hover:shadow-xl transition-shadow">
-                  <p className="text-sm leading-relaxed">{t.substring(0, 80)}...</p>
+                <div key={i} className="bg-white/60 backdrop-blur-lg p-1 rounded-lg border-l-2 border-purple-600 shadow">
+                  <p className="text-xs leading-tight">{t.substring(0, 50)}...</p>
                 </div>
               ))}
               {allHighlights.traits.length === 0 && (
-                <div className="text-gray-500 italic text-sm p-3 border-2 border-dashed border-gray-400/50 rounded-2xl bg-white/20 backdrop-blur-lg">
-                  Click sentences to add traits
+                <div className="text-gray-500 italic text-xs p-2 border border-dashed border-gray-400/50 rounded-lg bg-white/20">
+                  Click sentences to add
                 </div>
               )}
             </div>
@@ -349,27 +349,26 @@ const ArachneApp = () => {
           <div className="flex items-center justify-center">
             {allHighlights.traits.length > 0 && allHighlights.actions.length > 0 && (
               <div className="text-center">
-                <ArrowRight className="text-blue-600 mx-auto mb-2" size={32} />
+                <ArrowRight className="text-blue-600 mx-auto" size={16} />
                 <p className="text-xs font-semibold text-blue-800">drives</p>
-                <ArrowRight className="text-blue-600 mx-auto mt-2" size={32} />
               </div>
             )}
           </div>
 
           <div>
-            <div className="flex items-center gap-2 mb-3 bg-green-200/40 backdrop-blur-lg p-2 rounded-2xl border border-green-300/60">
-              <div className="w-3 h-3 bg-green-600 rounded-full"></div>
-              <span className="font-bold text-green-900">Actions</span>
+            <div className="flex items-center gap-1 mb-1 bg-green-200/40 backdrop-blur-lg p-1 rounded-lg border border-green-300/60">
+              <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+              <span className="font-bold text-green-900 text-xs">Actions</span>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1">
               {allHighlights.actions.map((a, i) => (
-                <div key={i} className="bg-white/60 backdrop-blur-lg p-3 rounded-2xl border-l-4 border-green-600 shadow-lg hover:shadow-xl transition-shadow">
-                  <p className="text-sm leading-relaxed">{a.substring(0, 80)}...</p>
+                <div key={i} className="bg-white/60 backdrop-blur-lg p-1 rounded-lg border-l-2 border-green-600 shadow">
+                  <p className="text-xs leading-tight">{a.substring(0, 50)}...</p>
                 </div>
               ))}
               {allHighlights.actions.length === 0 && (
-                <div className="text-gray-500 italic text-sm p-3 border-2 border-dashed border-gray-400/50 rounded-2xl bg-white/20 backdrop-blur-lg">
-                  Click sentences to add actions
+                <div className="text-gray-500 italic text-xs p-2 border border-dashed border-gray-400/50 rounded-lg bg-white/20">
+                  Click sentences to add
                 </div>
               )}
             </div>
@@ -377,19 +376,19 @@ const ArachneApp = () => {
         </div>
 
         {allHighlights.consequences.length > 0 && (
-          <div className="mt-6 pt-6 border-t-2 border-white/40">
-            <div className="text-center mb-3">
-              <ArrowRight className="text-blue-600 mx-auto rotate-90" size={32} />
+          <div className="mt-2 pt-2 border-t border-white/40">
+            <div className="text-center mb-1">
+              <ArrowRight className="text-blue-600 mx-auto rotate-90" size={16} />
               <p className="text-xs font-semibold text-blue-800">leads to</p>
             </div>
-            <div className="flex items-center gap-2 mb-3 bg-orange-200/40 backdrop-blur-lg p-2 rounded-2xl max-w-md mx-auto border border-orange-300/60">
-              <div className="w-3 h-3 bg-orange-600 rounded-full"></div>
-              <span className="font-bold text-orange-900">Consequences</span>
+            <div className="flex items-center gap-1 mb-1 bg-orange-200/40 backdrop-blur-lg p-1 rounded-lg max-w-md mx-auto border border-orange-300/60">
+              <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
+              <span className="font-bold text-orange-900 text-xs">Consequences</span>
             </div>
-            <div className="space-y-2 max-w-2xl mx-auto">
+            <div className="space-y-1 max-w-2xl mx-auto">
               {allHighlights.consequences.map((c, i) => (
-                <div key={i} className="bg-white/60 backdrop-blur-lg p-3 rounded-2xl border-l-4 border-orange-600 shadow-lg hover:shadow-xl transition-shadow">
-                  <p className="text-sm leading-relaxed">{c.substring(0, 120)}...</p>
+                <div key={i} className="bg-white/60 backdrop-blur-lg p-1 rounded-lg border-l-2 border-orange-600 shadow">
+                  <p className="text-xs leading-tight">{c.substring(0, 80)}...</p>
                 </div>
               ))}
             </div>
@@ -487,106 +486,106 @@ const ArachneApp = () => {
     const highlights = isChunk1 ? chunk1Highlights : chunk2Highlights;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-6">
-        <div className="max-w-6xl mx-auto">
+      <div className="h-screen overflow-hidden bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-2">
+        <div className="max-w-7xl mx-auto h-full flex flex-col">
           <ProgressBar />
 
-          <div className="bg-white/40 backdrop-blur-2xl rounded-3xl shadow-xl p-8 mb-6 border border-white/60">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-3xl font-bold text-gray-900">
+          <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-3 mb-2 border border-white/60 flex-shrink-0">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-xl font-bold text-gray-900">
                 {isChunk1 ? '📖 Chunk 1: Pride Established' : '📖 Chunk 2: Pride Creates Action'}
               </h2>
             </div>
 
             {isChunk1 && (
-              <div className="bg-yellow-100/40 backdrop-blur-xl border-4 border-yellow-400/60 rounded-2xl p-6 mb-6 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  📚 How This Works (3 Easy Steps!)
+              <div className="bg-yellow-100/40 backdrop-blur-xl border-2 border-yellow-400/60 rounded-xl p-2 mb-2 shadow-lg">
+                <h3 className="text-sm font-bold text-gray-900 mb-1">
+                  📚 How This Works:
                 </h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4 bg-white/50 backdrop-blur-lg p-4 rounded-2xl border border-white/60">
-                    <span className="text-3xl">1️⃣</span>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="flex items-start gap-1 bg-white/50 backdrop-blur-lg p-2 rounded-lg border border-white/60">
+                    <span className="text-lg">1️⃣</span>
                     <div>
-                      <p className="font-bold text-lg text-gray-900">HOVER over sentences to see what type they are</p>
-                      <p className="text-gray-700">Put your mouse on a sentence and wait - a hint bubble will appear!</p>
+                      <p className="font-bold text-xs text-gray-900">HOVER sentences</p>
+                      <p className="text-xs text-gray-700">See hints appear</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 bg-white/50 backdrop-blur-lg p-4 rounded-2xl border border-white/60">
-                    <span className="text-3xl">2️⃣</span>
+                  <div className="flex items-start gap-1 bg-white/50 backdrop-blur-lg p-2 rounded-lg border border-white/60">
+                    <span className="text-lg">2️⃣</span>
                     <div>
-                      <p className="font-bold text-lg text-gray-900">CLICK the sentence you want to mark</p>
-                      <p className="text-gray-700">It will turn blue when selected</p>
+                      <p className="font-bold text-xs text-gray-900">CLICK to select</p>
+                      <p className="text-xs text-gray-700">Turns blue</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 bg-white/50 backdrop-blur-lg p-4 rounded-2xl border border-white/60">
-                    <span className="text-3xl">3️⃣</span>
+                  <div className="flex items-start gap-1 bg-white/50 backdrop-blur-lg p-2 rounded-lg border border-white/60">
+                    <span className="text-lg">3️⃣</span>
                     <div>
-                      <p className="font-bold text-lg text-gray-900">CLICK the matching button below</p>
-                      <p className="text-gray-700">🟣 Trait = Who Arachne IS | 🟢 Action = What she DOES | 🟠 Consequence = What HAPPENS as a result</p>
+                      <p className="font-bold text-xs text-gray-900">PICK category</p>
+                      <p className="text-xs text-gray-700">Trait/Action/Result</p>
                     </div>
                   </div>
                 </div>
               </div>
             )}
 
-            <div className="bg-white/30 backdrop-blur-xl p-4 rounded-2xl mb-6 border border-white/60 shadow-lg">
+            <div className="bg-white/30 backdrop-blur-xl p-2 rounded-xl mb-2 border border-white/60 shadow-lg">
               <div className="flex justify-around text-center">
                 <div>
-                  <div className="text-3xl font-bold text-purple-700">{highlights.traits.length}</div>
-                  <div className="text-sm font-semibold text-gray-800">🟣 Traits Found</div>
+                  <div className="text-xl font-bold text-purple-700">{highlights.traits.length}</div>
+                  <div className="text-xs font-semibold text-gray-800">🟣 Traits</div>
                   <div className="text-xs text-gray-600">{isChunk1 ? 'Need: 2' : 'Optional'}</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-green-700">{highlights.actions.length}</div>
-                  <div className="text-sm font-semibold text-gray-800">🟢 Actions Found</div>
+                  <div className="text-xl font-bold text-green-700">{highlights.actions.length}</div>
+                  <div className="text-xs font-semibold text-gray-800">🟢 Actions</div>
                   <div className="text-xs text-gray-600">{isChunk1 ? 'Need: 2' : 'Need: 1'}</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-orange-700">{highlights.consequences.length}</div>
-                  <div className="text-sm font-semibold text-gray-800">🟠 Consequences Found</div>
+                  <div className="text-xl font-bold text-orange-700">{highlights.consequences.length}</div>
+                  <div className="text-xs font-semibold text-gray-800">🟠 Results</div>
                   <div className="text-xs text-gray-600">{isChunk1 ? 'Optional' : 'Need: 3'}</div>
                 </div>
               </div>
               {!canContinue && (
-                <div className="mt-3 text-center text-red-700 font-bold">
+                <div className="mt-1 text-center text-red-700 font-bold text-xs">
                   ⚠️ Find more evidence to continue!
                 </div>
               )}
             </div>
 
-            <div className="bg-white/20 backdrop-blur-xl p-6 rounded-2xl mb-6 border border-white/60 shadow-lg">
-              <p className="text-sm font-bold text-gray-800 mb-4 text-center">
-                👆 HOVER YOUR MOUSE OVER SENTENCES TO SEE HINTS 👆
+            <div className="bg-white/20 backdrop-blur-xl p-2 rounded-xl mb-2 border border-white/60 shadow-lg flex-1 overflow-hidden flex flex-col">
+              <p className="text-xs font-bold text-gray-800 mb-1 text-center">
+                👆 HOVER OVER SENTENCES FOR HINTS 👆
               </p>
 
-              <div className={`sticky top-2 z-20 mb-4 transition-all ${selectedSentence ? 'opacity-100' : 'opacity-50'}`}>
-                <div className="bg-gradient-to-r from-white/80 to-white/70 backdrop-blur-xl rounded-2xl p-3 border-2 border-white/60 shadow-xl">
-                  <p className="text-xs font-bold text-gray-700 mb-2 text-center">
+              <div className={`z-20 mb-2 transition-all ${selectedSentence ? 'opacity-100' : 'opacity-50'}`}>
+                <div className="bg-gradient-to-r from-white/80 to-white/70 backdrop-blur-xl rounded-lg p-2 border border-white/60 shadow-xl">
+                  <p className="text-xs font-bold text-gray-700 mb-1 text-center">
                     {selectedSentence ? '👇 Click a category button:' : 'Click a sentence first, then click its category:'}
                   </p>
                   <div className="flex gap-2 justify-center">
                     <button
                       onClick={() => handleCategorySelect('trait')}
                       disabled={!selectedSentence}
-                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-purple-500/80 to-purple-600/80 backdrop-blur-lg text-white rounded-xl hover:from-purple-600/90 hover:to-purple-700/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed font-bold text-sm shadow-lg hover:shadow-xl transform hover:scale-105 disabled:transform-none transition-all border border-white/40"
+                      className="flex items-center gap-1 px-3 py-1 bg-gradient-to-br from-purple-500/80 to-purple-600/80 backdrop-blur-lg text-white rounded-lg hover:from-purple-600/90 hover:to-purple-700/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed font-bold text-xs shadow-lg hover:shadow-xl transform hover:scale-105 disabled:transform-none transition-all border border-white/40"
                     >
-                      <span className="text-xl">🟣</span>
+                      <span className="text-sm">🟣</span>
                       <span>Trait</span>
                     </button>
                     <button
                       onClick={() => handleCategorySelect('action')}
                       disabled={!selectedSentence}
-                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-green-500/80 to-green-600/80 backdrop-blur-lg text-white rounded-xl hover:from-green-600/90 hover:to-green-700/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed font-bold text-sm shadow-lg hover:shadow-xl transform hover:scale-105 disabled:transform-none transition-all border border-white/40"
+                      className="flex items-center gap-1 px-3 py-1 bg-gradient-to-br from-green-500/80 to-green-600/80 backdrop-blur-lg text-white rounded-lg hover:from-green-600/90 hover:to-green-700/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed font-bold text-xs shadow-lg hover:shadow-xl transform hover:scale-105 disabled:transform-none transition-all border border-white/40"
                     >
-                      <span className="text-xl">🟢</span>
+                      <span className="text-sm">🟢</span>
                       <span>Action</span>
                     </button>
                     <button
                       onClick={() => handleCategorySelect('consequence')}
                       disabled={!selectedSentence}
-                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-orange-500/80 to-orange-600/80 backdrop-blur-lg text-white rounded-xl hover:from-orange-600/90 hover:to-orange-700/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed font-bold text-sm shadow-lg hover:shadow-xl transform hover:scale-105 disabled:transform-none transition-all border border-white/40"
+                      className="flex items-center gap-1 px-3 py-1 bg-gradient-to-br from-orange-500/80 to-orange-600/80 backdrop-blur-lg text-white rounded-lg hover:from-orange-600/90 hover:to-orange-700/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed font-bold text-xs shadow-lg hover:shadow-xl transform hover:scale-105 disabled:transform-none transition-all border border-white/40"
                     >
-                      <span className="text-xl">🟠</span>
+                      <span className="text-sm">🟠</span>
                       <span>Consequence</span>
                     </button>
                   </div>
@@ -603,12 +602,12 @@ const ArachneApp = () => {
                 </div>
               </div>
 
-              <div className="space-y-3 max-h-96 overflow-y-auto">
+              <div className="space-y-2 overflow-y-auto flex-1">
                 {textArray.map((sentence, idx) => (
                   <div key={idx} className="relative group">
                     <div
                       onClick={() => handleSentenceClick(sentence, isChunk1)}
-                      className={`p-4 rounded-lg border-2 cursor-pointer transition-all text-lg leading-relaxed ${getSentenceColor(sentence, isChunk1)}`}
+                      className={`p-2 rounded-lg border-2 cursor-pointer transition-all text-sm leading-relaxed ${getSentenceColor(sentence, isChunk1)}`}
                     >
                       {sentence}
                     </div>
@@ -634,23 +633,23 @@ const ArachneApp = () => {
             )}
           </div>
 
-          <div className="bg-white/40 backdrop-blur-2xl rounded-3xl shadow-xl p-8 mb-6 border border-white/60">
-            <div className="bg-white/30 backdrop-blur-xl p-4 rounded-2xl mb-6 border border-white/60">
-              <p className="text-center text-lg font-bold text-gray-900">
-                📊 YOUR EVIDENCE TRACKER - Watch your evidence grow as you work!
+          <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-3 mb-2 border border-white/60 flex-1 overflow-hidden">
+            <div className="bg-white/30 backdrop-blur-xl p-2 rounded-xl mb-2 border border-white/60">
+              <p className="text-center text-sm font-bold text-gray-900">
+                📊 EVIDENCE TRACKER
               </p>
-              <p className="text-center text-sm text-gray-700 mt-1">
-                This shows the pattern: Pride (trait) → Actions → Consequences
+              <p className="text-center text-xs text-gray-700">
+                Pride (trait) → Actions → Consequences
               </p>
             </div>
             <EvidenceWeb />
           </div>
 
-          <div className="mt-6 flex gap-4">
+          <div className="flex gap-2 flex-shrink-0">
             {page > 2 && (
               <button
                 onClick={() => setPage(page - 1)}
-                className="py-4 px-8 bg-gray-400/60 backdrop-blur-xl text-gray-900 text-xl font-bold rounded-2xl hover:bg-gray-500/70 shadow-lg border border-white/40"
+                className="py-2 px-4 bg-gray-400/60 backdrop-blur-xl text-gray-900 text-sm font-bold rounded-xl hover:bg-gray-500/70 shadow-lg border border-white/40"
               >
                 ← Back
               </button>
@@ -658,7 +657,7 @@ const ArachneApp = () => {
             <button
               onClick={() => setPage(page + 1)}
               disabled={!canContinue}
-              className="flex-1 py-4 bg-gradient-to-r from-blue-500/80 to-purple-500/80 backdrop-blur-xl text-white text-xl font-bold rounded-2xl hover:from-blue-600/90 hover:to-purple-600/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none transition-all border border-white/40"
+              className="flex-1 py-2 bg-gradient-to-r from-blue-500/80 to-purple-500/80 backdrop-blur-xl text-white text-sm font-bold rounded-xl hover:from-blue-600/90 hover:to-purple-600/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none transition-all border border-white/40"
             >
               {isChunk1 ? 'Continue to Chunk 2 →' : 'Build the Story →'}
             </button>
@@ -672,43 +671,43 @@ const ArachneApp = () => {
     const allSlotsFilled = summaryOrder.every(slot => slot !== null);
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-6">
-        <div className="max-w-6xl mx-auto">
+      <div className="h-screen overflow-hidden bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-2">
+        <div className="max-w-7xl mx-auto h-full flex flex-col">
           <ProgressBar />
 
-          <div className="bg-white/40 backdrop-blur-2xl rounded-3xl shadow-xl p-8 mb-6 border border-white/60">
-            <h2 className="text-4xl font-bold text-gray-900 mb-2">🧩 Put the Story in Order</h2>
-            <p className="text-xl text-gray-700 mb-6">Drag story pieces from the bottom into the numbered boxes</p>
+          <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-3 flex-1 overflow-auto border border-white/60">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">🧩 Put the Story in Order</h2>
+            <p className="text-sm text-gray-700 mb-2">Drag story pieces from the bottom into the numbered boxes</p>
 
-            <div className="bg-yellow-100/40 backdrop-blur-xl border-4 border-yellow-400/60 rounded-2xl p-6 mb-6 shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">📚 How to Do This:</h3>
-              <div className="space-y-3">
-                <div className="flex items-start gap-4 bg-white/50 backdrop-blur-lg p-4 rounded-2xl border border-white/60">
-                  <span className="text-3xl">1️⃣</span>
+            <div className="bg-yellow-100/40 backdrop-blur-xl border-2 border-yellow-400/60 rounded-xl p-2 mb-2 shadow-lg">
+              <h3 className="text-sm font-bold text-gray-900 mb-1">📚 How to Do This:</h3>
+              <div className="grid grid-cols-3 gap-2">
+                <div className="flex items-start gap-1 bg-white/50 backdrop-blur-lg p-2 rounded-lg border border-white/60">
+                  <span className="text-lg">1️⃣</span>
                   <div>
-                    <p className="font-bold text-lg text-gray-900">READ the story pieces at the bottom</p>
-                    <p className="text-gray-700">Hover your mouse over each piece to see a helpful hint!</p>
+                    <p className="font-bold text-xs text-gray-900">READ pieces</p>
+                    <p className="text-xs text-gray-700">Hover for hints!</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4 bg-white/50 backdrop-blur-lg p-4 rounded-2xl border border-white/60">
-                  <span className="text-3xl">2️⃣</span>
+                <div className="flex items-start gap-1 bg-white/50 backdrop-blur-lg p-2 rounded-lg border border-white/60">
+                  <span className="text-lg">2️⃣</span>
                   <div>
-                    <p className="font-bold text-lg text-gray-900">DRAG a piece to a numbered box</p>
-                    <p className="text-gray-700">Click and hold the piece, then drag it to where it belongs (1-5)</p>
+                    <p className="font-bold text-xs text-gray-900">DRAG to box</p>
+                    <p className="text-xs text-gray-700">Place in order</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4 bg-white/50 backdrop-blur-lg p-4 rounded-2xl border border-white/60">
-                  <span className="text-3xl">3️⃣</span>
+                <div className="flex items-start gap-1 bg-white/50 backdrop-blur-lg p-2 rounded-lg border border-white/60">
+                  <span className="text-lg">3️⃣</span>
                   <div>
-                    <p className="font-bold text-lg text-gray-900">Keep going until all 5 boxes are filled</p>
-                    <p className="text-gray-700">Then click "Check My Order" to see if you got it right!</p>
+                    <p className="font-bold text-xs text-gray-900">FILL all 5</p>
+                    <p className="text-xs text-gray-700">Then check!</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-blue-200/40 backdrop-blur-xl p-4 rounded-2xl mb-6 text-center border border-blue-300/60 shadow-lg">
-              <div className="text-2xl font-bold text-blue-900">
+            <div className="bg-blue-200/40 backdrop-blur-xl p-2 rounded-xl mb-2 text-center border border-blue-300/60 shadow-lg">
+              <div className="text-lg font-bold text-blue-900">
                 {summaryOrder.filter(s => s !== null).length} / 5 boxes filled
               </div>
               {!allSlotsFilled && (
@@ -719,15 +718,15 @@ const ArachneApp = () => {
               )}
             </div>
 
-            <div className="mb-8 bg-white/20 backdrop-blur-xl p-6 rounded-2xl border border-white/60 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">📖 The Story in Order (Beginning → End)</h3>
-              <div className="space-y-3">
+            <div className="mb-2 bg-white/20 backdrop-blur-xl p-2 rounded-xl border border-white/60 shadow-lg">
+              <h3 className="text-sm font-bold text-gray-900 mb-1 text-center">📖 The Story in Order (Beginning → End)</h3>
+              <div className="space-y-1">
                 {summaryOrder.map((chunk, idx) => (
                   <div
                     key={idx}
                     onDrop={(e) => handleDrop(e, idx)}
                     onDragOver={handleDragOver}
-                    className={`min-h-24 p-5 rounded-2xl border-3 transition-all backdrop-blur-xl shadow-lg ${
+                    className={`min-h-14 p-2 rounded-lg border-2 transition-all backdrop-blur-xl shadow ${
                       checkResult
                         ? checkResult[idx]
                           ? 'bg-gradient-to-r from-green-100/50 to-green-200/50 border-green-500/60'
@@ -737,8 +736,8 @@ const ArachneApp = () => {
                           : 'border-gray-400/50 border-dashed bg-white/10'
                     }`}
                   >
-                    <div className="flex items-start gap-3">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0 backdrop-blur-lg ${
+                    <div className="flex items-start gap-2">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 backdrop-blur-lg ${
                         checkResult && checkResult[idx]
                           ? 'bg-green-500/80 text-white border border-white/40'
                           : 'bg-blue-600/80 text-white border border-white/40'
@@ -747,24 +746,24 @@ const ArachneApp = () => {
                       </div>
                       {chunk ? (
                         <div className="flex-1">
-                          <p className="text-lg leading-relaxed font-medium">{chunk.text}</p>
+                          <p className="text-xs leading-tight">{chunk.text}</p>
                           {checkResult && (
-                            <div className="mt-2">
+                            <div className="mt-1">
                               {checkResult[idx] ? (
-                                <span className="text-green-800 font-bold flex items-center gap-2">
-                                  <CheckCircle size={20} /> Perfect! This is correct!
+                                <span className="text-green-700 font-bold text-xs flex items-center gap-1">
+                                  <CheckCircle size={12} /> Correct!
                                 </span>
                               ) : (
-                                <div className="text-red-800 font-bold">
-                                  <p>❌ Not quite - this goes somewhere else</p>
-                                  <p className="text-sm mt-1">💡 Hint: {chunk.hint}</p>
+                                <div className="text-red-700 text-xs">
+                                  <p className="font-bold">❌ Wrong spot</p>
+                                  <p className="mt-1">💡 {chunk.hint}</p>
                                 </div>
                               )}
                             </div>
                           )}
                         </div>
                       ) : (
-                        <p className="text-gray-500 italic text-lg">👆 Drag a story piece here...</p>
+                        <p className="text-gray-500 italic text-xs">👆 Drag a story piece here...</p>
                       )}
                     </div>
                   </div>
@@ -772,12 +771,12 @@ const ArachneApp = () => {
               </div>
             </div>
 
-            <div className="bg-white/20 backdrop-blur-xl p-6 rounded-2xl border border-white/60 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">📦 Story Pieces - Drag These Up!</h3>
-              <p className="text-sm text-gray-700 mb-4">
-                ⭐ <strong>PRO TIP:</strong> Hover your mouse over each piece to see a hint that helps you figure out where it goes!
+            <div className="bg-white/20 backdrop-blur-xl p-2 rounded-xl border border-white/60 shadow-lg">
+              <h3 className="text-sm font-bold text-gray-900 mb-1">📦 Story Pieces - Drag These Up!</h3>
+              <p className="text-xs text-gray-700 mb-2">
+                ⭐ <strong>TIP:</strong> Hover for hints!
               </p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 {availableChunks.map(chunk => (
                   <div
                     key={chunk.id}
@@ -786,15 +785,15 @@ const ArachneApp = () => {
                     <div
                       draggable
                       onDragStart={(e) => handleDragStart(e, chunk)}
-                      className="p-4 bg-white/50 backdrop-blur-lg border-2 border-white/60 rounded-2xl cursor-move hover:border-blue-500/60 hover:shadow-2xl transition-all transform hover:scale-105"
+                      className="p-2 bg-white/50 backdrop-blur-lg border border-white/60 rounded-lg cursor-move hover:border-blue-500/60 hover:shadow-xl transition-all transform hover:scale-105"
                     >
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-6 h-6 bg-blue-500/80 backdrop-blur-lg text-white rounded-full flex items-center justify-center text-xs font-bold border border-white/40">
+                      <div className="flex items-center gap-1 mb-1">
+                        <div className="w-4 h-4 bg-blue-500/80 backdrop-blur-lg text-white rounded-full flex items-center justify-center text-xs font-bold border border-white/40">
                           {chunk.id}
                         </div>
-                        <span className="text-xs text-gray-700 font-semibold">👆 HOVER FOR HINT</span>
+                        <span className="text-xs text-gray-600">Hover for hint</span>
                       </div>
-                      <p className="text-base leading-relaxed">{chunk.text}</p>
+                      <p className="text-xs leading-tight">{chunk.text}</p>
                     </div>
                     <div className="absolute hidden group-hover:block bg-yellow-100/95 backdrop-blur-sm text-gray-800 p-3 rounded-lg text-sm top-full left-0 right-0 mt-2 z-50 shadow-lg border border-yellow-300 pointer-events-none">
                       <div className="flex items-center gap-1 mb-1">
@@ -813,27 +812,27 @@ const ArachneApp = () => {
               </div>
             </div>
 
-            <div className="mt-6 space-y-3">
+            <div className="mt-2 space-y-2">
               <button
                 onClick={checkSummaryOrder}
                 disabled={!allSlotsFilled || checkResult !== null}
-                className="w-full py-5 bg-gradient-to-r from-blue-500/80 to-purple-500/80 backdrop-blur-xl text-white text-2xl font-bold rounded-2xl hover:from-blue-600/90 hover:to-purple-600/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none transition-all border border-white/40"
+                className="w-full py-2 bg-gradient-to-r from-blue-500/80 to-purple-500/80 backdrop-blur-xl text-white text-sm font-bold rounded-xl hover:from-blue-600/90 hover:to-purple-600/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none transition-all border border-white/40"
               >
                 {!allSlotsFilled ? '⚠️ Fill All 5 Boxes First' : '✅ Check My Order'}
               </button>
 
               {checkResult && !checkResult.every(r => r) && (
                 <>
-                  <div className="bg-yellow-200/40 backdrop-blur-xl border-2 border-yellow-400/60 rounded-2xl p-4 text-center shadow-lg">
-                    <p className="font-bold text-gray-900">
+                  <div className="bg-yellow-200/40 backdrop-blur-xl border border-yellow-400/60 rounded-lg p-2 text-center shadow-lg">
+                    <p className="font-bold text-xs text-gray-900">
                       🔄 You have {3 - attempts} {attempts === 2 ? 'attempt' : 'attempts'} left
                     </p>
-                    <p className="text-sm text-gray-700 mt-1">Read the hints on the wrong pieces and try again!</p>
+                    <p className="text-xs text-gray-700">Read the hints and try again!</p>
                   </div>
 
                   <button
                     onClick={() => setCheckResult(null)}
-                    className="w-full py-4 bg-gray-600/80 backdrop-blur-xl text-white text-xl font-bold rounded-2xl hover:bg-gray-700/90 shadow-lg border border-white/40"
+                    className="w-full py-2 bg-gray-600/80 backdrop-blur-xl text-white text-sm font-bold rounded-xl hover:bg-gray-700/90 shadow-lg border border-white/40"
                   >
                     🔄 Try Again
                   </button>
@@ -841,7 +840,7 @@ const ArachneApp = () => {
                   {attempts >= 3 && (
                     <button
                       onClick={revealAnswer}
-                      className="w-full py-4 bg-orange-500/80 backdrop-blur-xl text-white text-xl font-bold rounded-2xl hover:bg-orange-600/90 shadow-lg border border-white/40"
+                      className="w-full py-2 bg-orange-500/80 backdrop-blur-xl text-white text-sm font-bold rounded-xl hover:bg-orange-600/90 shadow-lg border border-white/40"
                     >
                       💡 Show Me the Correct Order
                     </button>
