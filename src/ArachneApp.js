@@ -613,7 +613,7 @@ const ArachneApp = () => {
                       {sentence}
                     </div>
                     {hovers[idx] && (
-                      <div className="absolute hidden group-hover:block bg-yellow-100/95 backdrop-blur-sm text-gray-800 p-3 rounded-lg text-sm -top-16 left-0 right-0 z-10 shadow-lg border border-yellow-300">
+                      <div className="absolute hidden group-hover:block bg-yellow-100/95 backdrop-blur-sm text-gray-800 p-3 rounded-lg text-sm -top-16 left-0 right-0 z-30 shadow-lg border border-yellow-300">
                         <div className="flex items-center gap-1 mb-1">
                           <span className="text-base">💡</span>
                           <span className="text-xs font-semibold uppercase tracking-wide">Hint:</span>
