@@ -602,7 +602,7 @@ const ArachneApp = () => {
                 </div>
               </div>
 
-              <div className="space-y-2 overflow-y-auto flex-1">
+              <div className="space-y-2 max-h-64 overflow-y-auto">
                 {textArray.map((sentence, idx) => (
                   <div key={idx} className="relative group">
                     <div
