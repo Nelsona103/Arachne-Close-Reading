@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { ArrowRight, Copy, CheckCircle, Award, Brain, Zap, Target } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { ArrowRight, Copy, CheckCircle, Award, Brain, Zap, Target, ChevronUp, BookOpen, Layers, Puzzle, PenTool } from 'lucide-react';
 
 const ArachneApp = () => {
   const [page, setPage] = useState(1);
@@ -15,7 +15,27 @@ const ArachneApp = () => {
   const [reflection, setReflection] = useState('');
   const [copied, setCopied] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const dragItem = useRef(null);
+
+  // Handle scroll for back to top button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Smooth scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Scroll to element
+  const scrollToElement = (elementId) => {
+    document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const chunk1Text = [
     "Arachne was used to being wondered at, and she was immensely proud of the skill that had brought so many to look on her.",
@@ -276,7 +296,7 @@ const ArachneApp = () => {
   };
 
   const ProgressBar = () => (
-    <div className="flex items-center justify-center gap-2 mb-3">
+    <div className="flex items-center justify-center gap-2 py-4">
       {[
         { num: 1, label: 'Start', icon: Target },
         { num: 2, label: 'Read 1', icon: Brain },
@@ -308,6 +328,19 @@ const ArachneApp = () => {
         );
       })}
     </div>
+  );
+
+  // Back to Top Button Component
+  const BackToTopButton = () => (
+    <button
+      onClick={scrollToTop}
+      className={`fixed bottom-6 right-6 z-50 p-3 bg-gradient-to-r from-blue-500/90 to-purple-500/90 text-white rounded-full shadow-2xl hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-110 ${
+        showBackToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+      }`}
+      aria-label="Back to top"
+    >
+      <ChevronUp size={24} />
+    </button>
   );
 
   const EvidenceWeb = () => {
@@ -400,10 +433,18 @@ const ArachneApp = () => {
 
   if (page === 1) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white/40 backdrop-blur-2xl rounded-3xl shadow-xl p-8 border border-white/60">
-            <div className="text-center mb-8">
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+        {/* Fixed Progress Bar */}
+        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/60 shadow-lg">
+          <div className="max-w-6xl mx-auto px-4">
+            <ProgressBar />
+          </div>
+        </div>
+
+        <div className="p-6 md:p-8 lg:p-12">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white/40 backdrop-blur-2xl rounded-3xl shadow-xl p-8 md:p-10 lg:p-12 border border-white/60 space-y-10">
+              <div className="text-center" id="intro-section">
               <div className="inline-block bg-white/50 backdrop-blur-lg text-purple-900 px-6 py-2 rounded-full text-sm font-bold mb-4 border border-white/60 shadow-lg">
                 ✨ INTERACTIVE CLOSE READING
               </div>
@@ -421,9 +462,9 @@ const ArachneApp = () => {
                   You'll find evidence showing: Pride → Actions → Consequences
                 </p>
               </div>
-            </div>
+              </div>
 
-            <div className="mb-8 bg-white/20 backdrop-blur-xl p-6 rounded-2xl border border-white/60 shadow-lg">
+              <div className="bg-white/20 backdrop-blur-xl p-6 md:p-8 rounded-2xl border border-white/60 shadow-lg" id="name-section">
               <label className="block text-xl font-bold text-gray-900 mb-3">👤 Enter Your Name:</label>
               <input
                 type="text"
@@ -432,9 +473,9 @@ const ArachneApp = () => {
                 className="w-full p-4 bg-white/50 backdrop-blur-lg border border-white/60 rounded-2xl text-xl focus:border-blue-400 focus:outline-none focus:ring-4 focus:ring-blue-200/50 transition-all shadow-lg"
                 placeholder="Type your name here..."
               />
-            </div>
+              </div>
 
-            <div className="bg-white/30 backdrop-blur-xl p-6 rounded-2xl mb-8 border border-white/60 shadow-lg">
+              <div className="bg-white/30 backdrop-blur-xl p-6 md:p-8 rounded-2xl border border-white/60 shadow-lg" id="steps-section">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">📋 5 Simple Steps:</h2>
               <div className="space-y-4">
                 {[
@@ -453,9 +494,9 @@ const ArachneApp = () => {
                   </div>
                 ))}
               </div>
-            </div>
+              </div>
 
-            <div className="bg-yellow-100/40 backdrop-blur-xl border-4 border-yellow-400/60 rounded-2xl p-6 mb-8 shadow-lg">
+              <div className="bg-yellow-100/40 backdrop-blur-xl border-4 border-yellow-400/60 rounded-2xl p-6 md:p-8 shadow-lg" id="tips-section">
               <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
                 ⭐ PRO TIP: Hover for Hints!
               </h3>
@@ -463,17 +504,19 @@ const ArachneApp = () => {
                 Throughout this activity, <strong>put your mouse over sentences and story pieces</strong> to see helpful hints.
                 These hints tell you EXACTLY what to do, so use them!
               </p>
-            </div>
+              </div>
 
-            <button
-              onClick={() => setPage(2)}
-              disabled={!studentName.trim()}
-              className="w-full py-5 bg-gradient-to-r from-blue-500/80 to-purple-500/80 backdrop-blur-xl text-white text-2xl font-bold rounded-2xl hover:from-blue-600/90 hover:to-purple-600/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none border border-white/40"
-            >
-              🚀 Start the Challenge
-            </button>
+              <button
+                onClick={() => setPage(2)}
+                disabled={!studentName.trim()}
+                className="w-full py-5 bg-gradient-to-r from-blue-500/80 to-purple-500/80 backdrop-blur-xl text-white text-2xl font-bold rounded-2xl hover:from-blue-600/90 hover:to-purple-600/90 disabled:from-gray-400/50 disabled:to-gray-400/50 disabled:cursor-not-allowed transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none border border-white/40"
+              >
+                🚀 Start the Challenge
+              </button>
+            </div>
           </div>
         </div>
+        <BackToTopButton />
       </div>
     );
   }
@@ -486,11 +529,18 @@ const ArachneApp = () => {
     const highlights = isChunk1 ? chunk1Highlights : chunk2Highlights;
 
     return (
-      <div className="h-screen overflow-hidden bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-2">
-        <div className="max-w-7xl mx-auto h-full flex flex-col">
-          <ProgressBar />
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+        {/* Fixed Progress Bar */}
+        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/60 shadow-lg">
+          <div className="max-w-6xl mx-auto px-4">
+            <ProgressBar />
+          </div>
+        </div>
 
-          <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-3 mb-2 border border-white/60 flex-shrink-0">
+        <div className="p-4 md:p-6 lg:p-8">
+          <div className="max-w-7xl mx-auto space-y-6">
+            {/* Header Section */}
+            <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-4 md:p-6 border border-white/60">
             <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-bold text-gray-900">
                 {isChunk1 ? '📖 Chunk 1: Pride Established' : '📖 Chunk 2: Pride Creates Action'}
@@ -553,7 +603,7 @@ const ArachneApp = () => {
               )}
             </div>
 
-            <div className="bg-white/20 backdrop-blur-xl p-2 rounded-xl mb-2 border border-white/60 shadow-lg flex-1 overflow-hidden flex flex-col">
+            <div className="bg-white/20 backdrop-blur-xl p-4 md:p-6 rounded-xl border border-white/60 shadow-lg">
               <p className="text-xs font-bold text-gray-800 mb-1 text-center">
                 👆 HOVER OVER SENTENCES FOR HINTS 👆
               </p>
@@ -602,7 +652,7 @@ const ArachneApp = () => {
                 </div>
               </div>
 
-              <div className="space-y-2 max-h-64 overflow-y-auto">
+              <div className="space-y-3">
                 {textArray.map((sentence, idx) => (
                   <div key={idx} className="relative group">
                     <div
@@ -633,7 +683,8 @@ const ArachneApp = () => {
             )}
           </div>
 
-          <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-3 mb-2 border border-white/60 flex-1 overflow-hidden">
+            {/* Evidence Tracker Section */}
+            <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-4 md:p-6 border border-white/60">
             <div className="bg-white/30 backdrop-blur-xl p-2 rounded-xl mb-2 border border-white/60">
               <p className="text-center text-sm font-bold text-gray-900">
                 📊 EVIDENCE TRACKER
@@ -643,9 +694,10 @@ const ArachneApp = () => {
               </p>
             </div>
             <EvidenceWeb />
-          </div>
+            </div>
 
-          <div className="flex gap-2 flex-shrink-0">
+            {/* Navigation Buttons */}
+            <div className="flex gap-3">
             {page > 2 && (
               <button
                 onClick={() => setPage(page - 1)}
@@ -661,8 +713,10 @@ const ArachneApp = () => {
             >
               {isChunk1 ? 'Continue to Chunk 2 →' : 'Build the Story →'}
             </button>
+            </div>
           </div>
         </div>
+        <BackToTopButton />
       </div>
     );
   }
@@ -671,11 +725,17 @@ const ArachneApp = () => {
     const allSlotsFilled = summaryOrder.every(slot => slot !== null);
 
     return (
-      <div className="h-screen overflow-hidden bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-2">
-        <div className="max-w-7xl mx-auto h-full flex flex-col">
-          <ProgressBar />
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+        {/* Fixed Progress Bar */}
+        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/60 shadow-lg">
+          <div className="max-w-6xl mx-auto px-4">
+            <ProgressBar />
+          </div>
+        </div>
 
-          <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-3 flex-1 overflow-auto border border-white/60">
+        <div className="p-4 md:p-6 lg:p-8">
+          <div className="max-w-7xl mx-auto space-y-6">
+            <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-4 md:p-6 border border-white/60">
             <h2 className="text-xl font-bold text-gray-900 mb-1">🧩 Put the Story in Order</h2>
             <p className="text-sm text-gray-700 mb-2">Drag story pieces from the bottom into the numbered boxes</p>
 
@@ -850,18 +910,26 @@ const ArachneApp = () => {
             </div>
           </div>
         </div>
+        <BackToTopButton />
       </div>
     );
   }
 
   if (page === 5) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-6">
-        <div className="max-w-5xl mx-auto">
-          <ProgressBar />
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+        {/* Fixed Progress Bar */}
+        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/60 shadow-lg">
+          <div className="max-w-6xl mx-auto px-4">
+            <ProgressBar />
+          </div>
+        </div>
 
-          <div className="bg-white/40 backdrop-blur-2xl rounded-3xl shadow-xl p-8 border border-white/60">
-            <div className="text-center mb-8">
+        <div className="p-6 md:p-8 lg:p-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-white/40 backdrop-blur-2xl rounded-3xl shadow-xl p-8 md:p-10 lg:p-12 border border-white/60 space-y-10">
+              {/* Success Header */}
+              <div className="text-center" id="success-section">
               <div className="inline-block mb-4">
                 <Award className="text-yellow-600 mx-auto" size={80} />
               </div>
@@ -869,9 +937,10 @@ const ArachneApp = () => {
                 Excellent Work!
               </h2>
               <p className="text-2xl text-gray-700">You've completed the Arachne analysis</p>
-            </div>
+              </div>
 
-            <div className="bg-white/30 backdrop-blur-xl p-8 rounded-2xl mb-8 border border-white/60 shadow-lg">
+              {/* Performance Section */}
+              <div className="bg-white/30 backdrop-blur-xl p-8 rounded-2xl border border-white/60 shadow-lg" id="performance-section">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">📊 Your Performance</h3>
               <div className="grid grid-cols-3 gap-6">
                 <div className="bg-white/50 backdrop-blur-lg p-6 rounded-2xl shadow-xl text-center border border-white/60">
@@ -893,9 +962,10 @@ const ArachneApp = () => {
                   <p className="text-lg font-semibold text-gray-800">🟠 Consequences</p>
                 </div>
               </div>
-            </div>
+              </div>
 
-            <div className="bg-white/20 backdrop-blur-xl p-8 rounded-2xl mb-8 border border-white/60 shadow-lg">
+              {/* Reflection Section */}
+              <div className="bg-white/20 backdrop-blur-xl p-8 rounded-2xl border border-white/60 shadow-lg" id="reflection-section">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">✍️ Final Reflection (Required)</h3>
               <div className="bg-blue-100/40 backdrop-blur-lg border-2 border-blue-400/60 rounded-2xl p-4 mb-4">
                 <p className="text-lg font-bold text-gray-900 mb-2">📝 Write 3-5 sentences answering this question:</p>
@@ -923,9 +993,10 @@ const ArachneApp = () => {
                   <p>✅ Word count: {reflection.trim().split(/\s+/).length} words</p>
                 </div>
               )}
-            </div>
+              </div>
 
-            <div className="bg-yellow-100/40 backdrop-blur-xl border-3 border-yellow-400/60 rounded-2xl p-8 mb-6 shadow-lg">
+              {/* Submit Section */}
+              <div className="bg-yellow-100/40 backdrop-blur-xl border-3 border-yellow-400/60 rounded-2xl p-8 shadow-lg" id="submit-section">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">📝 Submit Your Work:</h3>
               <ol className="space-y-3 text-lg text-gray-800 mb-6">
                 <li className="flex items-start gap-3">
@@ -964,14 +1035,17 @@ const ArachneApp = () => {
                   ⚠️ Please write your reflection before copying the report!
                 </p>
               )}
-            </div>
+              </div>
 
-            <div className="text-center text-gray-700 mt-6">
-              <p className="text-lg">🎉 Great job completing this analysis!</p>
-              <p className="text-base mt-2">Remember to submit your report to your teacher.</p>
+              {/* Final Message */}
+              <div className="text-center text-gray-700">
+                <p className="text-lg">🎉 Great job completing this analysis!</p>
+                <p className="text-base mt-2">Remember to submit your report to your teacher.</p>
+              </div>
             </div>
           </div>
         </div>
+        <BackToTopButton />
       </div>
     );
   }
