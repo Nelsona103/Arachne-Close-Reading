@@ -10,7 +10,10 @@
       "Bash(npm start)",
       "Bash(npm install)",
       "Bash(vercel:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(curl -s https://api.github.com/repos/Nelsona103/Arachne-Close-Reading/commits/main)",
+      "Bash(npm run build:*)",
+      "Bash(npx eslint:*)"
     ],
     "deny": [],
     "ask": []

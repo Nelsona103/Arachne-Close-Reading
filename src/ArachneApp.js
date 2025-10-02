@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, Copy, CheckCircle, Award, Brain, Zap, Target, ChevronUp, BookOpen, Layers, Puzzle, PenTool } from 'lucide-react';
+import { ArrowRight, Copy, CheckCircle, Award, Brain, Zap, Target, ChevronUp } from 'lucide-react';
 
 const ArachneApp = () => {
   const [page, setPage] = useState(1);
@@ -30,11 +30,6 @@ const ArachneApp = () => {
   // Smooth scroll to top
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  // Scroll to element
-  const scrollToElement = (elementId) => {
-    document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const chunk1Text = [
@@ -921,6 +916,7 @@ const ArachneApp = () => {
                   )}
                 </>
               )}
+            </div>
             </div>
           </div>
         </div>
