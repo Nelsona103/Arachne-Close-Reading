@@ -663,20 +663,30 @@ const ArachneApp = () => {
 
               <div className="space-y-3">
                 {textArray.map((sentence, idx) => (
-                  <div key={idx} className="relative group">
+                  <div key={idx} className="flex items-start gap-2">
                     <div
                       onClick={() => handleSentenceClick(sentence, isChunk1)}
-                      className={`p-2 rounded-lg border-2 cursor-pointer transition-all text-sm leading-relaxed ${getSentenceColor(sentence, isChunk1)}`}
+                      className={`flex-1 p-2 rounded-lg border-2 cursor-pointer transition-all text-sm leading-relaxed ${getSentenceColor(sentence, isChunk1)}`}
                     >
                       {sentence}
                     </div>
                     {hovers[idx] && (
-                      <div className="absolute hidden group-hover:block bg-yellow-100/95 backdrop-blur-sm text-gray-800 p-3 rounded-lg text-sm -top-16 left-0 right-0 z-30 shadow-lg border border-yellow-300">
-                        <div className="flex items-center gap-1 mb-1">
-                          <span className="text-base">💡</span>
-                          <span className="text-xs font-semibold uppercase tracking-wide">Hint:</span>
+                      <div className="flex-shrink-0 group relative">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-lg cursor-help transition-all hover:scale-110 ${
+                          hovers[idx].type === 'trait' ? 'bg-purple-100 hover:bg-purple-200' :
+                          hovers[idx].type === 'action' ? 'bg-green-100 hover:bg-green-200' :
+                          'bg-orange-100 hover:bg-orange-200'
+                        }`}>
+                          {hovers[idx].type === 'trait' ? '🟣' :
+                           hovers[idx].type === 'action' ? '🟢' : '🟠'}
                         </div>
-                        <div className="leading-snug text-xs">{hovers[idx].text}</div>
+                        <div className="absolute hidden group-hover:block bg-gray-900/95 text-white p-2 rounded-lg text-xs w-64 -left-56 top-0 z-30 shadow-xl">
+                          <div className="font-semibold mb-1">
+                            {hovers[idx].type === 'trait' ? 'CHARACTER TRAIT' :
+                             hovers[idx].type === 'action' ? 'ACTION' : 'CONSEQUENCE'}
+                          </div>
+                          <div className="leading-snug">{hovers[idx].text.replace(/[🟣🟢🟠]/g, '').replace('CHARACTER TRAIT:', '').replace('ACTION:', '').replace('CONSEQUENCE:', '').trim()}</div>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -814,7 +824,12 @@ const ArachneApp = () => {
                         {idx + 1}
                       </div>
                       {chunk ? (
-                        <div className="flex-1">
+                        <div
+                          className="flex-1 cursor-move hover:opacity-80 transition-opacity"
+                          draggable
+                          onDragStart={(e) => handleDragStart(e, chunk)}
+                          title="Drag to rearrange"
+                        >
                           <p className="text-xs leading-tight">{chunk.text}</p>
                           {checkResult && (
                             <div className="mt-1">
