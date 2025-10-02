@@ -900,7 +900,11 @@ const ArachneApp = () => {
                   </div>
 
                   <button
-                    onClick={() => setCheckResult(null)}
+                    onClick={() => {
+                      setCheckResult(null);
+                      setSummaryOrder([null, null, null, null, null]);
+                      setAvailableChunks([...summaryChunks].sort(() => Math.random() - 0.5));
+                    }}
                     className="w-full py-2 bg-gray-600/80 backdrop-blur-xl text-white text-sm font-bold rounded-xl hover:bg-gray-700/90 shadow-lg border border-white/40"
                   >
                     🔄 Try Again
