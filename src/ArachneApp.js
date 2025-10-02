@@ -534,20 +534,6 @@ const ArachneApp = () => {
 
         <div className="p-4 md:p-6 lg:p-8">
           <div className="max-w-7xl mx-auto space-y-6">
-            {/* Visual Reference Image */}
-            <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-4 border border-white/60">
-              <h3 className="text-lg font-bold text-gray-900 mb-3 text-center">🎨 The Story of Arachne - Visual Reference</h3>
-              <img
-                src="/images/arachne-weaving.jpg"
-                alt="Arachne and Athene weaving contest - showing Arachne at her loom on the left and Athene on the right"
-                className="w-full h-auto rounded-xl shadow-lg"
-                style={{ maxHeight: '300px', objectFit: 'cover', objectPosition: 'center' }}
-              />
-              <p className="text-sm text-gray-700 mt-2 text-center italic">
-                Arachne (left) and Athene (right) in their weaving contest - notice Arachne's pride in her posture!
-              </p>
-            </div>
-
             {/* Header Section */}
             <div className="bg-white/40 backdrop-blur-2xl rounded-2xl shadow-xl p-4 md:p-6 border border-white/60">
             <div className="flex items-center justify-between mb-2">
@@ -613,10 +599,6 @@ const ArachneApp = () => {
             </div>
 
             <div className="bg-white/20 backdrop-blur-xl p-4 md:p-6 rounded-xl border border-white/60 shadow-lg">
-              <p className="text-xs font-bold text-gray-800 mb-1 text-center">
-                👆 HOVER OVER SENTENCES FOR HINTS 👆
-              </p>
-
               <div className={`z-20 mb-2 transition-all ${selectedSentence ? 'opacity-100' : 'opacity-50'}`}>
                 <div className="bg-gradient-to-r from-white/80 to-white/70 backdrop-blur-xl rounded-lg p-2 border border-white/60 shadow-xl">
                   <p className="text-xs font-bold text-gray-700 mb-1 text-center">
